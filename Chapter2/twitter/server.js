@@ -17,6 +17,14 @@ const server = http.createServer((req, res) => {
   res.write(':' + Array(2049).join('')+'\n');
   res.write('retry:2000\n');
 
+  fs.open(tweetFile, 'r', (err, fd) => {
+    if (!err) {
+      sendNext(fd);
+    }
+  })
+
+  start();
+
   res.socket.on("close", () => {
     response = null;
   })
@@ -56,5 +64,3 @@ function start() {
     })
   })
 }
-
-start();
