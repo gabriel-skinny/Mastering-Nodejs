@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<script>
+  window.onload = () => {
+    let list = document.getElementById("list");
+    let eventSource = new EventSource("http://localhost:3333/events");
+
+    eventSource.onmessage = (e) => {
+      let newElement = document.createElement("li");
+      newElement.innerHTML = e.data;
+      list.appendChild(newElement);
+    }
+  } 
+</script>
+
+<body>
+
+  <ul id="list"></ul>
+
+  
+</body>
+</html>
