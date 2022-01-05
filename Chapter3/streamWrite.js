@@ -1,7 +1,8 @@
 const stream = require("stream");
 
 let writable = new stream.Writable({
-  highWaterMark: 2
+  highWaterMark: 2,
+  objectMode: true
 });
 
 writable._write = (chunk, enconding, callback) => {
